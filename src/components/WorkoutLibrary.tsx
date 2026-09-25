@@ -11,7 +11,7 @@ interface IWorkoutLibraryProps {
 const WorkoutLibrary = ({ workout }: IWorkoutLibraryProps) => {
   return (
     <section>
-      <div className="w-full overflow-hidden rounded-2xl bg-[#191c22]">
+      <div className="w-full overflow-hidden rounded-2xl border border-transparent bg-[#191c22] transition-colors duration-200 hover:border-[#c8ff00]">
         <div className="h-[220px] w-full overflow-hidden sm:h-[230px] lg:h-[250px]">
           <Image
             src={workout.image}

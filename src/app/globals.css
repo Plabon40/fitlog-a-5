@@ -1,2 +1,13 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+h1 {
+  font-family: oswald;
+}
+p,
+span {
+  font-family: inter;
+}
+p {
+  color: #9ca3af;
+}

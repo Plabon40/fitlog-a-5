@@ -27,7 +27,7 @@ const FitlogData = async () => {
 
       <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {data.map((workout: Iworkout) => (
-          <Link href="/workout-details" key={workout.id}>
+          <Link href={`/workout/${workout.id}`} key={workout.id}>
             <WorkoutLibrary key={workout.id} workout={workout} />
           </Link>
         ))}

@@ -17,7 +17,7 @@ const Navbar = () => {
         <div>
           <ul className=" hidden md:flex gap-2 text-[14px]">
             <li className="px-[10px] py-[2px] hover:bg-gray-900 rounded-[7px]">
-              <Link href="/">Workout</Link>
+              <Link href="/workout">Workout</Link>
             </li>
             <li className="px-[10px] py-[2px] hover:bg-gray-900 rounded-[7px]">
               <Link href="/my-plan">My Plan</Link>
