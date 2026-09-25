@@ -1,5 +1,6 @@
 import Banner from "@/components/Banner";
 import FitlogData from "@/components/FitLogData";
+import { ToastContainer } from "react-toastify";
 
 const HomePage = () => {
   return (

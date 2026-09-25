@@ -1,9 +1,13 @@
+"use client";
 import Link from "next/link";
 
 import Image from "next/image";
 import { inter, oswald } from "@/app/font";
+import { useContext } from "react";
+import { WorkoutContext } from "@/context/ContextProvider";
 
 const Navbar = () => {
+  const { workouts, setWorkouts } = useContext(WorkoutContext);
   return (
     <nav className="fixed top-0 left-0 z-50 w-full bg-black/40 backdrop-blur-md ">
       <div className=" flex justify-between items-center py-3 text-white container mx-auto px-5">
@@ -30,7 +34,7 @@ const Navbar = () => {
               <Link href="/workout">
                 Plan{" "}
                 <span className=" text-black inline-flex w-6 h-6 items-center justify-center rounded-full bg-[#C2F800]">
-                  0
+                  {workouts.length}
                 </span>
               </Link>
             </li>

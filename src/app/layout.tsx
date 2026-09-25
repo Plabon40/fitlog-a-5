@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import ContextProvider, { WorkoutContext } from "@/context/ContextProvider";
+import { Bounce, ToastContainer } from "react-toastify";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -12,8 +14,23 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={` h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-[#0f1115]">
-        <Navbar></Navbar>
-        <main className="pt-20">{children}</main>
+        <ContextProvider>
+          <Navbar></Navbar>
+          <main className="pt-20">{children}</main>
+          <ToastContainer
+            position="top-right"
+            autoClose={2000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover={false}
+            theme="dark"
+            transition={Bounce}
+          />
+        </ContextProvider>
       </body>
     </html>
   );

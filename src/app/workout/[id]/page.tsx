@@ -1,3 +1,4 @@
+import Button from "@/components/button/Button";
 import { Iworkout } from "@/type";
 
 import Image from "next/image";
@@ -23,10 +24,10 @@ const getData = async () => {
 };
 
 const WorkoutDetailsPage = async ({ params }: IworkaoutdetailsPageProps) => {
-  const { id }: { id: string } = await params;
+  const { id } = await params;
 
   const workoutData: Iworkout[] = await getData();
-  const workout = workoutData.find(
+  const workout: Iworkout | undefined = workoutData.find(
     (workout: Iworkout) => workout.id === Number(id),
   );
 
@@ -37,7 +38,6 @@ const WorkoutDetailsPage = async ({ params }: IworkaoutdetailsPageProps) => {
   return (
     <section className="min-h-screen    px-4 py-6 sm:px-6 lg:px-8">
       <div className="mx-auto grid max-w-[900px] grid-cols-1 gap-7 md:grid-cols-[403px_1fr]">
-
         <div className="w-full overflow-hidden rounded-xl">
           <Image
             src={workout.image}
@@ -48,19 +48,15 @@ const WorkoutDetailsPage = async ({ params }: IworkaoutdetailsPageProps) => {
           />
         </div>
 
-      
         <div className="flex flex-col">
-          {/* Title */}
           <h1 className="font-condensed text-[28px] font-bold uppercase leading-tight text-white sm:text-[30px]">
             {workout.name}
           </h1>
 
-      
           <p className="mt-2 max-w-[440px] text-[13px] leading-5 text-gray-300">
             {workout.description}
           </p>
 
- 
           <div className="mt-3 flex flex-wrap gap-2">
             {workout.muscleGroups.map((muscle) => (
               <span
@@ -72,9 +68,7 @@ const WorkoutDetailsPage = async ({ params }: IworkaoutdetailsPageProps) => {
             ))}
           </div>
 
-      
           <div className="mt-4 overflow-hidden rounded-xl border border-white/10 bg-[#191c21]">
-          
             <div className="grid grid-cols-[1fr_1.3fr] border-b border-white/10 px-3 py-3">
               <span className="text-[10px] font-bold uppercase text-white">
                 Equipment
@@ -83,7 +77,6 @@ const WorkoutDetailsPage = async ({ params }: IworkaoutdetailsPageProps) => {
                 {workout.equipment}
               </span>
             </div>
-
 
             <div className="grid grid-cols-[1fr_1.3fr] border-b border-white/10 px-3 py-3">
               <span className="text-[10px] font-bold uppercase text-white">
@@ -101,14 +94,12 @@ const WorkoutDetailsPage = async ({ params }: IworkaoutdetailsPageProps) => {
               <span className="text-[13px] text-white">{workout.sets}</span>
             </div>
 
-
             <div className="grid grid-cols-[1fr_1.3fr] border-b border-white/10 px-3 py-3">
               <span className="text-[10px] font-bold uppercase text-white">
                 Reps
               </span>
               <span className="text-[13px] text-white">{workout.reps}</span>
             </div>
-
 
             <div className="grid grid-cols-[1fr_1.3fr] border-b border-white/10 px-3 py-3">
               <span className="text-[10px] font-bold uppercase text-white">
@@ -119,7 +110,6 @@ const WorkoutDetailsPage = async ({ params }: IworkaoutdetailsPageProps) => {
               </span>
             </div>
 
-
             <div className="grid grid-cols-[1fr_1.3fr] border-b border-white/10 px-3 py-3">
               <span className="text-[10px] font-bold uppercase text-white">
                 Calories
@@ -129,7 +119,6 @@ const WorkoutDetailsPage = async ({ params }: IworkaoutdetailsPageProps) => {
               </span>
             </div>
 
-  
             <div className="grid grid-cols-[1fr_1.3fr] px-3 py-3">
               <span className="text-[10px] font-bold uppercase text-white">
                 Rating
@@ -137,7 +126,6 @@ const WorkoutDetailsPage = async ({ params }: IworkaoutdetailsPageProps) => {
               <span className="text-[13px] text-white">{workout.rating}</span>
             </div>
           </div>
-
 
           <div className="mt-6">
             <h2 className="text-[20px] font-bold uppercase text-white">
@@ -153,17 +141,9 @@ const WorkoutDetailsPage = async ({ params }: IworkaoutdetailsPageProps) => {
             </ol>
           </div>
 
-          
-          <div className="mt-5 flex flex-wrap gap-2">
-            <button className="flex items-center gap-2 rounded-full bg-[#c8ff00] px-4 py-2 text-[12px] font-semibold text-black transition hover:bg-[#d8ff45]">
-              <HiOutlineCalendarDays size={16} />
-              Add to today&apos;s plan
-            </button>
-
-            <button className="flex items-center gap-2 rounded-full border border-white/60 px-4 py-2 text-[12px] font-semibold text-white transition hover:bg-white/10">
-              <FaBookmark size={11} />
-              Save for later
-            </button>
+          <div>
+            {/* btn */}
+            <Button workout={workout}></Button>
           </div>
         </div>
       </div>
