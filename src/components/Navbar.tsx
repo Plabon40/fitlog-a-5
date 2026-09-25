@@ -5,19 +5,19 @@ import { inter, oswald } from "@/app/font";
 
 const Navbar = () => {
   return (
-    <nav className="bg-[#000000] border-b-2 border-[#C2F800]">
+    <nav className="fixed top-0 left-0 z-50 w-full bg-black/40 backdrop-blur-md ">
       <div className=" flex justify-between items-center py-3 text-white container mx-auto px-5">
-        <div className="flex gap-2 items-center">
-          <Link href="/workout">
+        <div>
+          <Link className="flex gap-2 items-center" href="/">
             <Image src="/logo.png" width={20} height={20} alt="logo" />
+            <h1 className={oswald.className}>FITLOG</h1>
           </Link>
-          <h1 className={oswald.className}>FITLOG</h1>
         </div>
 
         <div>
-          <ul className="flex gap-2 text-[14px]">
+          <ul className=" hidden md:flex gap-2 text-[14px]">
             <li className="px-[10px] py-[2px] hover:bg-gray-900 rounded-[7px]">
-              <Link href="/workout">Workout</Link>
+              <Link href="/">Workout</Link>
             </li>
             <li className="px-[10px] py-[2px] hover:bg-gray-900 rounded-[7px]">
               <Link href="/my-plan">My Plan</Link>
