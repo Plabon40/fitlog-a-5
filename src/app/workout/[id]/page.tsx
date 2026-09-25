@@ -37,7 +37,7 @@ const WorkoutDetailsPage = async ({ params }: IworkaoutdetailsPageProps) => {
   return (
     <section className="min-h-screen    px-4 py-6 sm:px-6 lg:px-8">
       <div className="mx-auto grid max-w-[900px] grid-cols-1 gap-7 md:grid-cols-[403px_1fr]">
-        {/* ================= IMAGE ================= */}
+
         <div className="w-full overflow-hidden rounded-xl">
           <Image
             src={workout.image}
@@ -48,19 +48,19 @@ const WorkoutDetailsPage = async ({ params }: IworkaoutdetailsPageProps) => {
           />
         </div>
 
-        {/* ================= DETAILS ================= */}
+      
         <div className="flex flex-col">
           {/* Title */}
           <h1 className="font-condensed text-[28px] font-bold uppercase leading-tight text-white sm:text-[30px]">
             {workout.name}
           </h1>
 
-          {/* Description */}
+      
           <p className="mt-2 max-w-[440px] text-[13px] leading-5 text-gray-300">
             {workout.description}
           </p>
 
-          {/* Muscle Groups */}
+ 
           <div className="mt-3 flex flex-wrap gap-2">
             {workout.muscleGroups.map((muscle) => (
               <span
@@ -72,9 +72,9 @@ const WorkoutDetailsPage = async ({ params }: IworkaoutdetailsPageProps) => {
             ))}
           </div>
 
-          {/* ================= INFO TABLE ================= */}
+      
           <div className="mt-4 overflow-hidden rounded-xl border border-white/10 bg-[#191c21]">
-            {/* Equipment */}
+          
             <div className="grid grid-cols-[1fr_1.3fr] border-b border-white/10 px-3 py-3">
               <span className="text-[10px] font-bold uppercase text-white">
                 Equipment
@@ -84,7 +84,7 @@ const WorkoutDetailsPage = async ({ params }: IworkaoutdetailsPageProps) => {
               </span>
             </div>
 
-            {/* Difficulty */}
+
             <div className="grid grid-cols-[1fr_1.3fr] border-b border-white/10 px-3 py-3">
               <span className="text-[10px] font-bold uppercase text-white">
                 Difficulty
@@ -94,7 +94,6 @@ const WorkoutDetailsPage = async ({ params }: IworkaoutdetailsPageProps) => {
               </span>
             </div>
 
-            {/* Sets */}
             <div className="grid grid-cols-[1fr_1.3fr] border-b border-white/10 px-3 py-3">
               <span className="text-[10px] font-bold uppercase text-white">
                 Sets
@@ -102,7 +101,7 @@ const WorkoutDetailsPage = async ({ params }: IworkaoutdetailsPageProps) => {
               <span className="text-[13px] text-white">{workout.sets}</span>
             </div>
 
-            {/* Reps */}
+
             <div className="grid grid-cols-[1fr_1.3fr] border-b border-white/10 px-3 py-3">
               <span className="text-[10px] font-bold uppercase text-white">
                 Reps
@@ -110,7 +109,7 @@ const WorkoutDetailsPage = async ({ params }: IworkaoutdetailsPageProps) => {
               <span className="text-[13px] text-white">{workout.reps}</span>
             </div>
 
-            {/* Duration */}
+
             <div className="grid grid-cols-[1fr_1.3fr] border-b border-white/10 px-3 py-3">
               <span className="text-[10px] font-bold uppercase text-white">
                 Duration
@@ -120,7 +119,7 @@ const WorkoutDetailsPage = async ({ params }: IworkaoutdetailsPageProps) => {
               </span>
             </div>
 
-            {/* Calories */}
+
             <div className="grid grid-cols-[1fr_1.3fr] border-b border-white/10 px-3 py-3">
               <span className="text-[10px] font-bold uppercase text-white">
                 Calories
@@ -130,7 +129,7 @@ const WorkoutDetailsPage = async ({ params }: IworkaoutdetailsPageProps) => {
               </span>
             </div>
 
-            {/* Rating */}
+  
             <div className="grid grid-cols-[1fr_1.3fr] px-3 py-3">
               <span className="text-[10px] font-bold uppercase text-white">
                 Rating
@@ -139,7 +138,7 @@ const WorkoutDetailsPage = async ({ params }: IworkaoutdetailsPageProps) => {
             </div>
           </div>
 
-          {/* ================= INSTRUCTIONS ================= */}
+
           <div className="mt-6">
             <h2 className="text-[20px] font-bold uppercase text-white">
               Instructions
@@ -154,7 +153,7 @@ const WorkoutDetailsPage = async ({ params }: IworkaoutdetailsPageProps) => {
             </ol>
           </div>
 
-          {/* ================= BUTTONS ================= */}
+          
           <div className="mt-5 flex flex-wrap gap-2">
             <button className="flex items-center gap-2 rounded-full bg-[#c8ff00] px-4 py-2 text-[12px] font-semibold text-black transition hover:bg-[#d8ff45]">
               <HiOutlineCalendarDays size={16} />
