@@ -19,7 +19,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <main className="pt-20">{children}</main>
           <ToastContainer
             position="top-right"
-            autoClose={2000}
+            autoClose={1000}
             hideProgressBar={false}
             newestOnTop={false}
             closeOnClick

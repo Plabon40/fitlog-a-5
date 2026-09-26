@@ -7,7 +7,8 @@ import { HiOutlineCalendarDays } from "react-icons/hi2";
 import { toast } from "react-toastify";
 
 const Button = ({ workout }: { workout: Iworkout }) => {
-  const { workouts, setWorkouts } = useContext(WorkoutContext);
+  const { workouts, setWorkouts, savedWorkouts, setSavedWorkouts } =
+    useContext(WorkoutContext);
 
   const handleWorkout = () => {
     if (workouts.some((w) => w.id === workout.id)) {
@@ -16,6 +17,14 @@ const Button = ({ workout }: { workout: Iworkout }) => {
     }
     setWorkouts([...workouts, workout]);
     toast.success("Added to today's plan!");
+  };
+  const handleSaveWorkout = () => {
+    if (savedWorkouts.some((w) => w.id === workout.id)) {
+      toast.error("Already in your savelist");
+      return;
+    }
+    setSavedWorkouts([...savedWorkouts, workout]);
+    toast.success("Saved for later");
   };
 
   return (
@@ -28,7 +37,10 @@ const Button = ({ workout }: { workout: Iworkout }) => {
         Add to today&apos;s plan
       </button>
 
-      <button className="flex cursor-pointer items-center gap-2 rounded-full border border-white/60 px-4 py-2 text-[12px] font-semibold text-white transition hover:bg-white/10">
+      <button
+        onClick={() => handleSaveWorkout()}
+        className="flex cursor-pointer items-center gap-2 rounded-full border border-white/60 px-4 py-2 text-[12px] font-semibold text-white transition hover:bg-white/10"
+      >
         <FaBookmark size={11} />
         Save for later
       </button>
