@@ -1,7 +1,7 @@
 import { Iworkout } from "@/type";
 import Image from "next/image";
-import Link from "next/link";
-import { FaCheck, FaFire, FaRegClock, FaStar, FaXmark } from "react-icons/fa6";
+
+import { FaFire, FaRegClock, FaStar, FaXmark } from "react-icons/fa6";
 import ButtonPlan from "./Button/ButtonPlan";
 
 const TodayDetails = ({ workout }: { workout: Iworkout }) => {
@@ -37,29 +37,8 @@ const TodayDetails = ({ workout }: { workout: Iworkout }) => {
           </span>
         </div>
       </div>
-      {/*  */}
 
       <ButtonPlan workout={workout} />
-
-      {/* <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap lg:items-center">
-        <Link href={`/workout/${workout.id}`}>
-          <button className="cursor-pointer rounded-full border border-gray-300 px-5 py-3 font-semibold hover:bg-white hover:text-black">
-            View Details
-          </button>
-        </Link>
-
-        <button className="cursor-pointer flex items-center justify-center gap-2 rounded-full bg-[#C2F800] px-5 py-3 font-medium text-black hover:bg-[#b8ed00]">
-          <FaCheck />
-          Mark as Done
-        </button>
-
-        <button
-          aria-label="Remove workout"
-          className="self-center p-2 text-xl text-gray-300 hover:text-white"
-        >
-          <FaXmark />
-        </button>
-      </div> */}
     </div>
   );
 };

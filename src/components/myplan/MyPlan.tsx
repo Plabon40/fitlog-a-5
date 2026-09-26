@@ -10,6 +10,26 @@ import TodayDetails from "./TodayDetails";
 const MyPlan = () => {
   const { workouts, savedWorkouts } = useContext(WorkoutContext);
   const [tab, setTab] = useState<"today" | "saved">("today");
+  const [sortBy, setSortBy] = useState<"Duration" | "Calories" | "Rating">(
+    "Duration",
+  );
+  const currentWorkouts = tab === "today" ? workouts : savedWorkouts;
+
+  const sortedWorkouts = [...currentWorkouts].sort((a, b) => {
+    if (sortBy === "Duration") {
+      return a.duration - b.duration;
+    }
+
+    if (sortBy === "Calories") {
+      return a.caloriesBurned - b.caloriesBurned;
+    }
+
+    if (sortBy === "Rating") {
+      return b.rating - a.rating;
+    }
+
+    return 0;
+  });
   let min = 0;
   let cal = 0;
   let smin = 0;
@@ -86,27 +106,28 @@ const MyPlan = () => {
           <p className="mb-1 text-sm text-gray-400">Sort by</p>
 
           <select
-            defaultValue="Duration"
+            value={sortBy}
+            onChange={(e) => setSortBy(e.target.value)}
             className="select select-ghost w-full border border-white"
           >
-            <option>Duration</option>
-            <option>Calories</option>
-            <option>Rating</option>
+            <option value="Duration">Duration</option>
+            <option value="Calories">Calories</option>
+            <option value="Rating">Rating</option>
           </select>
         </div>
       </div>
       <div className="py-6">
-        {workouts.length === 0 && savedWorkouts.length === 0 ? (
+        {sortedWorkouts.length === 0 ? (
           <EmptyState />
         ) : (
           <div>
-            {tab === "today"
-              ? workouts.map((workout) => (
-                  <TodayDetails key={workout.id} workout={workout} />
-                ))
-              : savedWorkouts.map((workout) => (
-                  <SaveDetails key={workout.id} workout={workout} />
-                ))}
+            {sortedWorkouts.map((workout) =>
+              tab === "today" ? (
+                <TodayDetails key={workout.id} workout={workout} />
+              ) : (
+                <SaveDetails key={workout.id} workout={workout} />
+              ),
+            )}
           </div>
         )}
       </div>

@@ -5,17 +5,25 @@ import { useContext } from "react";
 
 import { FaCheck } from "react-icons/fa";
 import { FaXmark } from "react-icons/fa6";
+import { toast } from "react-toastify";
 
 const ButtonPlan = ({ workout }: { workout: Iworkout }) => {
-  const { workouts, savedWorkouts } = useContext(WorkoutContext);
+  const { workouts, setWorkouts } = useContext(WorkoutContext);
 
   const handlemarkAsDone = (workout: Iworkout) => {
     const updatedWorkouts = workouts.filter((w) => w.id !== workout.id);
-    const updatedSavedWorkouts = savedWorkouts.filter(
-      (w) => w.id !== workout.id,
-    );
-  };
 
+    setWorkouts(updatedWorkouts);
+
+    toast.success("Workout Logged Successfully");
+  };
+  const handleremove = (workout: Iworkout) => {
+    const updatedWorkouts = workouts.filter((w) => w.id !== workout.id);
+
+    setWorkouts(updatedWorkouts);
+
+    toast.success("Removed from today's plan");
+  };
   return (
     <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap lg:items-center">
       <Link href={`/workout/${workout.id}`}>
@@ -33,6 +41,7 @@ const ButtonPlan = ({ workout }: { workout: Iworkout }) => {
       </button>
 
       <button
+        onClick={() => handleremove(workout)}
         aria-label="Remove workout"
         className="self-center p-2 text-xl text-gray-300 hover:text-white"
       >
