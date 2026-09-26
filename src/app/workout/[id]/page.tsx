@@ -1,33 +1,35 @@
 import Button from "@/components/button/Button";
 import { Iworkout } from "@/type";
-
+import { getWorkouts } from "@/workout";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { FaBookmark } from "react-icons/fa6";
-import { HiOutlineCalendarDays } from "react-icons/hi2";
-interface IworkaoutdetailsPageProps {
+
+interface IworkoutDetailsPageProps {
   params: Promise<{
     id: string;
   }>;
 }
 
-const getData = async () => {
-  const res = await fetch("https://api.abcz.workers.dev/api/fitlog", {
-    cache: "no-store",
-  });
+// const getData = async () => {
+//   const res = await fetch("https://api.abcz.workers.dev/api/fitlog", {
+//     next: {
+//       revalidate: 3600,
+//     },
+//   });
 
-  if (!res.ok) {
-    throw new Error(`Failed to fetch workouts: ${res.status}`);
-  }
+//   if (!res.ok) {
+//     throw new Error(`Failed to fetch workouts: ${res.status}`);
+//   }
 
-  return res.json();
-};
+//   return res.json();
+// };
 
-const WorkoutDetailsPage = async ({ params }: IworkaoutdetailsPageProps) => {
+const WorkoutDetailsPage = async ({ params }: IworkoutDetailsPageProps) => {
   const { id } = await params;
 
-  const workoutData: Iworkout[] = await getData();
-  const workout: Iworkout | undefined = workoutData.find(
+  const workoutData: Iworkout[] = await getWorkouts();
+
+  const workout = workoutData.find(
     (workout: Iworkout) => workout.id === Number(id),
   );
 
@@ -36,7 +38,7 @@ const WorkoutDetailsPage = async ({ params }: IworkaoutdetailsPageProps) => {
   }
 
   return (
-    <section className="min-h-screen    px-4 py-6 sm:px-6 lg:px-8">
+    <section className="min-h-screen px-4 py-6 sm:px-6 lg:px-8">
       <div className="mx-auto grid max-w-[900px] grid-cols-1 gap-7 md:grid-cols-[403px_1fr]">
         <div className="w-full overflow-hidden rounded-xl">
           <Image
@@ -44,7 +46,7 @@ const WorkoutDetailsPage = async ({ params }: IworkaoutdetailsPageProps) => {
             width={400}
             height={700}
             alt={workout.name}
-            className="h-[250px] w-full h-full object-cover"
+            className="h-[500px] w-full object-cover md:h-[590px]"
           />
         </div>
 
@@ -141,9 +143,8 @@ const WorkoutDetailsPage = async ({ params }: IworkaoutdetailsPageProps) => {
             </ol>
           </div>
 
-          <div>
-            {/* btn */}
-            <Button workout={workout}></Button>
+          <div className="mt-5">
+            <Button workout={workout} />
           </div>
         </div>
       </div>
