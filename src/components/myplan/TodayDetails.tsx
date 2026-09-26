@@ -1,0 +1,67 @@
+import { Iworkout } from "@/type";
+import Image from "next/image";
+import Link from "next/link";
+import { FaCheck, FaFire, FaRegClock, FaStar, FaXmark } from "react-icons/fa6";
+import ButtonPlan from "./Button/ButtonPlan";
+
+const TodayDetails = ({ workout }: { workout: Iworkout }) => {
+  return (
+    <div className="flex flex-col gap-5 rounded-2xl border border-[#292d35] bg-[#191c22] p-4 text-white sm:p-5 lg:flex-row lg:items-center">
+      <Image
+        src={workout.image}
+        alt={workout.name}
+        width={195}
+        height={130}
+        className="h-[180px] w-full rounded-2xl object-cover sm:h-[200px] lg:h-[130px] lg:w-[195px]"
+      />
+
+      <div className="flex-1">
+        <h1 className={` text-2xl`}>{workout.name}</h1>
+
+        <p className="text-lg text-[#9CA3AF]">{workout.equipment}</p>
+
+        <div className="mt-3 flex flex-wrap gap-5 text-base">
+          <span className="flex items-center gap-2">
+            <FaRegClock className="text-[#C2F800]" />
+            {workout.duration} min
+          </span>
+
+          <span className="flex items-center gap-2">
+            <FaFire className="text-[#C2F800]" />
+            {workout.caloriesBurned} kcal
+          </span>
+
+          <span className="flex items-center gap-2">
+            <FaStar className="text-[#C2F800]" />
+            {workout.rating}
+          </span>
+        </div>
+      </div>
+      {/*  */}
+
+      <ButtonPlan workout={workout} />
+
+      {/* <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap lg:items-center">
+        <Link href={`/workout/${workout.id}`}>
+          <button className="cursor-pointer rounded-full border border-gray-300 px-5 py-3 font-semibold hover:bg-white hover:text-black">
+            View Details
+          </button>
+        </Link>
+
+        <button className="cursor-pointer flex items-center justify-center gap-2 rounded-full bg-[#C2F800] px-5 py-3 font-medium text-black hover:bg-[#b8ed00]">
+          <FaCheck />
+          Mark as Done
+        </button>
+
+        <button
+          aria-label="Remove workout"
+          className="self-center p-2 text-xl text-gray-300 hover:text-white"
+        >
+          <FaXmark />
+        </button>
+      </div> */}
+    </div>
+  );
+};
+
+export default TodayDetails;

@@ -31,7 +31,7 @@ const Navbar = () => {
         <div>
           <ul className={`flex gap-2 text-[14px] ${inter.className}`}>
             <li className="px-[10px] py-[2px] hover:bg-gray-900 rounded-[7px]">
-              <Link href="/workout">
+              <Link href="/my-plan">
                 Plan{" "}
                 <span className=" text-black inline-flex w-6 h-6 items-center justify-center rounded-full bg-[#C2F800]">
                   {workouts.length}
@@ -40,7 +40,7 @@ const Navbar = () => {
             </li>
 
             <li className="px-[10px] py-[2px] hover:bg-gray-900 rounded-[7px]">
-              <Link href="/workout">
+              <Link href="/my-plan">
                 Save{" "}
                 <span className=" text-black inline-flex w-6 h-6 items-center justify-center rounded-full bg-[#C2F800]">
                   {savedWorkouts.length}
