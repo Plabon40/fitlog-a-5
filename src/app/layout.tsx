@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 
 import "./globals.css";
 import Navbar from "@/components/Navbar";
-import ContextProvider, { WorkoutContext } from "@/context/ContextProvider";
+import ContextProvider from "@/context/ContextProvider";
 import { Bounce, ToastContainer } from "react-toastify";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -30,6 +31,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             theme="dark"
             transition={Bounce}
           />
+          <Footer />
         </ContextProvider>
       </body>
     </html>

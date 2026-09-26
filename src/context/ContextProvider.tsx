@@ -1,7 +1,7 @@
 "use client";
 
 import { Iworkout } from "@/type";
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { createContext } from "react";
 
 type TWorkoutContext = {
@@ -17,9 +17,40 @@ export const WorkoutContext = createContext<TWorkoutContext>({
   savedWorkouts: [],
   setSavedWorkouts: () => {},
 });
+
 const ContextProvider = ({ children }: { children: ReactNode }) => {
   const [workouts, setWorkouts] = useState<Iworkout[]>([]);
   const [savedWorkouts, setSavedWorkouts] = useState<Iworkout[]>([]);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  // Load localStorage after hydration
+  useEffect(() => {
+    const storedWorkouts = localStorage.getItem("workouts");
+    const storedSavedWorkouts = localStorage.getItem("savedWorkouts");
+
+    if (storedWorkouts) {
+      setWorkouts(JSON.parse(storedWorkouts));
+    }
+
+    if (storedSavedWorkouts) {
+      setSavedWorkouts(JSON.parse(storedSavedWorkouts));
+    }
+
+    setIsLoaded(true);
+  }, []);
+
+  // Save only after localStorage has been loaded
+  useEffect(() => {
+    if (!isLoaded) return;
+
+    localStorage.setItem("workouts", JSON.stringify(workouts));
+  }, [workouts, isLoaded]);
+
+  useEffect(() => {
+    if (!isLoaded) return;
+
+    localStorage.setItem("savedWorkouts", JSON.stringify(savedWorkouts));
+  }, [savedWorkouts, isLoaded]);
 
   const shared = {
     workouts,
