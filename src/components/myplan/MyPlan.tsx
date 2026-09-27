@@ -107,7 +107,9 @@ const MyPlan = () => {
 
           <select
             value={sortBy}
-            onChange={(e) => setSortBy(e.target.value)}
+            onChange={(e) =>
+              setSortBy(e.target.value as "Duration" | "Calories" | "Rating")
+            }
             className="select select-ghost w-full border border-white"
           >
             <option value="Duration">Duration</option>

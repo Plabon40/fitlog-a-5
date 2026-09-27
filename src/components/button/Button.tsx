@@ -10,7 +10,11 @@ const Button = ({ workout }: { workout: Iworkout }) => {
   const { workouts, setWorkouts, savedWorkouts, setSavedWorkouts } =
     useContext(WorkoutContext);
 
-  const handleWorkout = () => {
+  const handleWorkout = (workout: Iworkout) => {
+    if (workouts.length >= 5) {
+      toast.error("Finish the previous plan before adding a new one.");
+      return;
+    }
     if (workouts.some((w) => w.id === workout.id)) {
       toast.error("Already in your plan.");
       return;
@@ -18,7 +22,7 @@ const Button = ({ workout }: { workout: Iworkout }) => {
     setWorkouts([...workouts, workout]);
     toast.success("Added to today's plan!");
   };
-  const handleSaveWorkout = () => {
+  const handleSaveWorkout = (workout: Iworkout) => {
     if (savedWorkouts.some((w) => w.id === workout.id)) {
       toast.error("Already in your savelist");
       return;
@@ -30,7 +34,7 @@ const Button = ({ workout }: { workout: Iworkout }) => {
   return (
     <div className=" mt-5 flex flex-wrap gap-2">
       <button
-        onClick={() => handleWorkout()}
+        onClick={() => handleWorkout(workout)}
         className=" cursor-pointer flex items-center gap-2 rounded-full bg-[#c8ff00] px-4 py-2 text-[12px] font-semibold text-black transition hover:bg-[#d8ff45]"
       >
         <HiOutlineCalendarDays size={16} />
@@ -38,7 +42,7 @@ const Button = ({ workout }: { workout: Iworkout }) => {
       </button>
 
       <button
-        onClick={() => handleSaveWorkout()}
+        onClick={() => handleSaveWorkout(workout)}
         className="flex cursor-pointer items-center gap-2 rounded-full border border-white/60 px-4 py-2 text-[12px] font-semibold text-white transition hover:bg-white/10"
       >
         <FaBookmark size={11} />
